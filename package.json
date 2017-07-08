@@ -1,0 +1,12 @@
+{
+  "name": "telemetry-dashboard-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:humancatfood/telemetry-dashboard-challenge.git",
+  "author": "Jan Borchers",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

@@ -23,18 +23,23 @@ html, body {
 
 }
 
-
-#numeric-speed {
+.numeric-gauge-digital {
   font-size: 26px;
   letter-spacing: 10px;
+}
+
+.numeric-gauge-analog{
+  font-size: 20px;
+  letter-spacing: 0px;
+}
+
+#numeric-speed {
   right: 729px;
   top: 258px;
 }
 
 
 #numeric-altitude {
-  font-size: 20px;
-  letter-spacing: 0px;
   right: 403px;
   top: 262px;
 }

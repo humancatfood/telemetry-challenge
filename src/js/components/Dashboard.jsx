@@ -4,7 +4,7 @@ import numeral from 'numeral';
 
 import { connectDashboard, disconnectDashboard } from './../data/actions';
 
-import { NumericDisplay } from './DashboardElements';
+import { NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog } from './DashboardElements';
 
 
 @connect(state => ({
@@ -52,12 +52,13 @@ export default class Dashboard extends React.Component
     return (
       <div id="dashboard">
 
-        <div id="numeric-speed" className="numeric-gauge">{ numeral(speed % 1000).format('000') }</div>
+        <NumericGaugeDigital id="numeric-speed" value={ speed } />
+
         <NumericDisplay id="numeric-speed-min" value={ minSpeed } />
         <NumericDisplay id="numeric-speed-max" value={ maxSpeed } />
         <NumericDisplay id="numeric-speed-ave" value={ averageSpeed } />
 
-        <div id="numeric-altitude" className="numeric-gauge">{ numeral(altitude / 1000).format('0.0') }</div>
+        <NumericGaugeAnalog id="numeric-altitude" value={ altitude / 1000 } />
         <NumericDisplay id="numeric-altitude-min" value={ minAltitude } />
         <NumericDisplay id="numeric-altitude-max" value={ maxAltitude } />
         <NumericDisplay id="numeric-altitude-ave" value={ averageAltitude } />

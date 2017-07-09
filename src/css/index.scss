@@ -15,13 +15,12 @@ html, body {
   background-image: url(../img/bg.png);
 
   color: white;
-
-}
-
-
-.numeric-gauge {
-  position: absolute;
   font-family: monospace;
+
+  & > * {
+    position: absolute;
+  }
+
 }
 
 
@@ -79,3 +78,24 @@ html, body {
   left: 495px;
 }
 
+
+#status {
+  font-size: 16px;
+  top: 435px;
+  left: 805px;
+  width: 130px;
+  letter-spacing: 0px;
+  text-align: end;
+
+  background-image: url(./../img/connection-offline.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &.connected {
+    background-image: url(./../img/connection-online.png);
+  }
+
+  &.connecting {
+    background-image: url(./../img/connection-connecting.png);
+  }
+}

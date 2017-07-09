@@ -7,13 +7,14 @@ import { connectionEstablished, connectionLost, receiveData } from './actions';
 export default class StoreConnector
 {
 
-  constructor (store)
+  constructor (autoReconnect=true)
   {
     this.store = null;
     this.connection = null;
+    this.autoReconnect = autoReconnect;
   }
 
-  connect (store)
+  connectToStore (store)
   {
     this.store = store;
     store.subscribe(() => {
@@ -25,18 +26,28 @@ export default class StoreConnector
   {
     if (!this.connection && state.connection.shouldBeConnected)
     {
-      this.connection = new Connection({
-        onOpen: this.onOpen.bind(this),
-        onClose: this.onClose.bind(this),
-        onMessage: this.onMessage.bind(this),
-        onError: this.onError.bind(this)
-      });
+      this.connectToServer();
     }
     else if (this.connection && !state.connection.shouldBeConnected)
     {
-      this.connection.close();
-      this.connection = null;
+      this.disconnectFromServer();
     }
+  }
+
+  connectToServer ()
+  {
+    this.connection = new Connection({
+      onOpen: this.onOpen.bind(this),
+      onClose: this.onClose.bind(this),
+      onMessage: this.onMessage.bind(this),
+      onError: this.onError.bind(this)
+    });
+  }
+
+  disconnectFromServer ()
+  {
+    this.connection.close();
+    this.connection = null;
   }
 
   onOpen ()
@@ -47,6 +58,12 @@ export default class StoreConnector
   onClose ()
   {
     this.store.dispatch(connectionLost());
+
+    const { connection: shouldBeConnected} = this.store.getState();
+    if (shouldBeConnected && this.autoReconnect)
+    {
+      setTimeout(this.connectToServer.bind(this), 1000);
+    }
   }
 
   onMessage (msg)

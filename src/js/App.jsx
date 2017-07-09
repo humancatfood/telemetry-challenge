@@ -16,7 +16,7 @@ export default class App extends React.Component
 
     this.store = configureStore();
     const storeConnector = new StoreConnector();
-    storeConnector.connect(this.store);
+    storeConnector.connectToStore(this.store);
   }
 
   render ()

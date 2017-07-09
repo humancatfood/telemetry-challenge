@@ -26,8 +26,15 @@ export default (state=defaultTelemetryState, action) => {
       const { telemetry } = action.payload;
       return {
         ...state,
+
         speed: telemetry.airspeed,
-        altitude: telemetry.altitude
+        minSpeed: Math.min(telemetry.airspeed, state.minSpeed),
+        maxSpeed: Math.max(telemetry.airspeed, state.maxSpeed),
+
+        altitude: telemetry.altitude,
+        minAltitude: Math.min(telemetry.altitude, state.minAltitude),
+        maxAltitude: Math.max(telemetry.altitude, state.maxAltitude),
+
       };
     }
 

@@ -19,14 +19,63 @@ html, body {
 }
 
 
-#numeric-speed {
+.numeric-gauge {
   position: absolute;
+  font-family: monospace;
+}
+
+
+#numeric-speed {
+  font-size: 26px;
+  letter-spacing: 10px;
   right: 729px;
   top: 258px;
 }
 
-.numeric-gauge {
-  font-family: monospace;
-  font-size: 26px;
-  letter-spacing: 10px;
+
+#numeric-altitude {
+  font-size: 20px;
+  letter-spacing: 0px;
+  right: 403px;
+  top: 262px;
 }
+
+
+.numeric-display {
+  position: absolute;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+
+#numeric-speed-min {
+  top: 407px;
+  left: 160px;
+}
+
+#numeric-speed-max {
+  top: 437px;
+  left: 160px;
+}
+
+#numeric-speed-ave {
+  top: 467px;
+  left: 160px;
+}
+
+
+#numeric-altitude-min {
+  top: 407px;
+  left: 495px;
+}
+
+#numeric-altitude-max {
+  top: 437px;
+  left: 495px;
+}
+
+#numeric-altitude-ave {
+  top: 467px;
+  left: 495px;
+}
+

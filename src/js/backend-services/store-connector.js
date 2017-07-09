@@ -1,6 +1,6 @@
 import Connection from './connection-service';
 
-import { connectionEstablished, connectionLost, receiveData } from './actions';
+import { connectionEstablished, connectionLost, receiveData } from '../data/actions';
 
 
 

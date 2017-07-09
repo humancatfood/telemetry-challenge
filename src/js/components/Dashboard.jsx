@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import numeral from 'numeral';
 
 import { connectDashboard, disconnectDashboard } from './../data/actions';
 
-import { NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog } from './DashboardElements';
+import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
+         NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog } from './DashboardElements';
 
 
 @connect(state => ({
@@ -63,21 +63,9 @@ export default class Dashboard extends React.Component
         <NumericDisplay id="numeric-altitude-max" value={ maxAltitude } />
         <NumericDisplay id="numeric-altitude-ave" value={ averageAltitude } />
 
-        {
-          landingGear ?
-            <div id="landing-gear-status" className="on" /> :
-            <div id="landing-gear-status" className="off" />
-        }
-
-        <div id="flaps-status" className={ `position-${ flaps }` } />
-
-        {
-          isConnected ?
-            <div id="connection-status" className="connected">Connected</div> :
-            isConnecting ?
-              <div id="connection-status" className="connecting">Connecting</div> :
-              <div id="connection-status" className="disconnected">Disconnected</div>
-        }
+        <LandingGearDisplay on={ landingGear } />
+        <FlapStatusDisplay position={ flaps } />
+        <ConnectionStatusDisplay isConnected={ isConnected } isConnecting={ isConnecting } />
 
       </div>
     );

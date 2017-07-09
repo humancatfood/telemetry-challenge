@@ -7,6 +7,9 @@ import { connectDashboard, disconnectDashboard } from './../data/actions';
 
 @connect(state => ({
 
+  landingGear: state.controls.landingGear,
+  flaps: state.controls.flaps,
+
   speed: state.telemetry.speed,
   minSpeed: state.telemetry.minSpeed,
   maxSpeed: state.telemetry.maxSpeed,
@@ -40,6 +43,7 @@ export default class Dashboard extends React.Component
   {
     const { speed, minSpeed, maxSpeed, averageSpeed,
             altitude, minAltitude, maxAltitude, averageAltitude,
+            landingGear, flaps,
             isConnected, isConnecting } = this.props;
 
     return (
@@ -56,11 +60,19 @@ export default class Dashboard extends React.Component
         <div id="numeric-altitude-ave" className="numeric-display">{ Number(averageAltitude).toFixed(1) }</div>
 
         {
+          landingGear ?
+            <div id="landing-gear-status" className="on" /> :
+            <div id="landing-gear-status" className="off" />
+        }
+
+        <div id="flaps-status" className={ `position-${ flaps }` } />
+
+        {
           isConnected ?
-            <div id="status" className="connected">Connected</div> :
+            <div id="connection-status" className="connected">Connected</div> :
             isConnecting ?
-              <div id="status" className="connecting">Connecting</div> :
-              <div id="status" className="disconnected">Disconnected</div>
+              <div id="connection-status" className="connecting">Connecting</div> :
+              <div id="connection-status" className="disconnected">Disconnected</div>
         }
 
       </div>

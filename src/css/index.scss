@@ -79,7 +79,7 @@ html, body {
 }
 
 
-#status {
+#connection-status {
   font-size: 16px;
   top: 435px;
   left: 805px;
@@ -98,4 +98,41 @@ html, body {
   &.connecting {
     background-image: url(./../img/connection-connecting.png);
   }
+}
+
+
+#landing-gear-status {
+
+  width: 70px;
+  height: 52px;
+  top: 120px;
+
+  &.on {
+    background-image: url(./../img/landing-gear-on.png);
+    left: 804px;
+  }
+
+  &.off {
+    background-image: url(./../img/landing-gear-off.png);
+    left: 874px;
+  }
+
+}
+
+
+#flaps-status {
+
+  width: 20px;
+  height: 52px;
+  top: 257px;
+  left: 804px;
+
+  background-image: url(./../img/flaps-switch.png);
+
+  @for $i from 0 through 5 {
+    &.position-#{$i} {
+      left: 804px + (24 * $i);
+    }
+  }
+
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import numeral from 'numeral';
 
 import { connectDashboard, disconnectDashboard } from './../data/actions';
 
+import { NumericDisplay } from './DashboardElements';
 
 
 @connect(state => ({
@@ -26,6 +28,7 @@ import { connectDashboard, disconnectDashboard } from './../data/actions';
 }), {
   connectDashboard,
   disconnectDashboard
+
 })
 export default class Dashboard extends React.Component
 {
@@ -49,15 +52,15 @@ export default class Dashboard extends React.Component
     return (
       <div id="dashboard">
 
-        <div id="numeric-speed" className="numeric-gauge">{ speed }</div>
-        <div id="numeric-speed-min" className="numeric-display">{ minSpeed }</div>
-        <div id="numeric-speed-max" className="numeric-display">{ maxSpeed }</div>
-        <div id="numeric-speed-ave" className="numeric-display">{ Number(averageSpeed).toFixed(1) }</div>
+        <div id="numeric-speed" className="numeric-gauge">{ numeral(speed % 1000).format('000') }</div>
+        <NumericDisplay id="numeric-speed-min" value={ minSpeed } />
+        <NumericDisplay id="numeric-speed-max" value={ maxSpeed } />
+        <NumericDisplay id="numeric-speed-ave" value={ averageSpeed } />
 
-        <div id="numeric-altitude" className="numeric-gauge">{ Number(altitude / 1000).toFixed(1) }</div>
-        <div id="numeric-altitude-min" className="numeric-display">{ minAltitude }</div>
-        <div id="numeric-altitude-max" className="numeric-display">{ maxAltitude }</div>
-        <div id="numeric-altitude-ave" className="numeric-display">{ Number(averageAltitude).toFixed(1) }</div>
+        <div id="numeric-altitude" className="numeric-gauge">{ numeral(altitude / 1000).format('0.0') }</div>
+        <NumericDisplay id="numeric-altitude-min" value={ minAltitude } />
+        <NumericDisplay id="numeric-altitude-max" value={ maxAltitude } />
+        <NumericDisplay id="numeric-altitude-ave" value={ averageAltitude } />
 
         {
           landingGear ?

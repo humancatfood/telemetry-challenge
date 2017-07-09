@@ -7,11 +7,13 @@ export const defaultTelemetryState = {
   minSpeed: 0,
   maxSpeed: 0,
   averageSpeed: 0,
+  speedRecords: [],
 
   altitude: 0,
   minAltitude: 0,
   maxAltitude: 0,
   averageAltitude: 0,
+  altitudeRecords: [],
 
 };
 
@@ -23,17 +25,25 @@ export default (state=defaultTelemetryState, action) => {
   {
 
     case ACTIONS.RECEIVE_DATA: {
-      const { telemetry } = action.payload;
+      const { telemetry: {airspeed, altitude} } = action.payload;
+      const speedRecords = state.speedRecords.concat(airspeed);
+      const altitudeRecords = state.altitudeRecords.concat(altitude);
       return {
         ...state,
 
-        speed: telemetry.airspeed,
-        minSpeed: Math.min(telemetry.airspeed, state.minSpeed),
-        maxSpeed: Math.max(telemetry.airspeed, state.maxSpeed),
+        speedRecords,
+        altitudeRecords,
 
-        altitude: telemetry.altitude,
-        minAltitude: Math.min(telemetry.altitude, state.minAltitude),
-        maxAltitude: Math.max(telemetry.altitude, state.maxAltitude),
+        speed: airspeed,
+        minSpeed: Math.min(airspeed, state.minSpeed),
+        maxSpeed: Math.max(airspeed, state.maxSpeed),
+        averageSpeed: speedRecords.reduce((a,b) => a + b) / speedRecords.length,
+
+
+        altitude: altitude,
+        minAltitude: Math.min(altitude, state.minAltitude),
+        maxAltitude: Math.max(altitude, state.maxAltitude),
+        averageAltitude: altitudeRecords.reduce((a,b) => a + b) / altitudeRecords.length,
 
       };
     }

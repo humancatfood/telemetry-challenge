@@ -1,5 +1,7 @@
 {
+
   "presets": [
+    "react",
     [
       "env",
       {
@@ -9,5 +11,19 @@
         "modules": false
       }
     ]
-  ]
+  ],
+
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-object-rest-spread"
+  ],
+
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    }
+  }
+
 }

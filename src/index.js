@@ -1,21 +1,10 @@
+import './css/index.scss';
 
-const url = 'ws://interview.dev.ctx.ef.com/telemetry';
-const connection = new WebSocket(url);
-window.console.log(connection);
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-function logger(type) {
-  return function () {
-    window.console.info(type, ":", arguments);
-  };
-}
+import App from './js/App';
 
 
-connection.onopen = logger('onopen');
 
-connection.onclose = logger('onclose');
-
-connection.onerror = logger('onerror');
-
-connection.onmessage = logger('onmessage');
-
-window.c = connection;
+ReactDOM.render(<App />, document.getElementById('app'));

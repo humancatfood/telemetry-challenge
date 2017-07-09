@@ -52,7 +52,7 @@ const common = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         use: 'babel-loader'
       },
       {
@@ -115,6 +115,7 @@ const development = {
   devServer: {
     contentBase: PATHS.src,
     historyApiFallback: true,
+    hot: true,
 
     watchOptions: {
       poll: 300
@@ -127,7 +128,8 @@ const development = {
     new webpack.DefinePlugin({
       'ENV.DEBUG': true,
       'process.env.BABEL_ENV': 'development'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
 

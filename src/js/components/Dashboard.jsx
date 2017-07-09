@@ -6,7 +6,7 @@ import { connectDashboard, disconnectDashboard } from './../data/actions';
 
 
 @connect(state => ({
-  speed: state.speed
+  speed: state.telemetry.speed
 }), {
   connectDashboard,
   disconnectDashboard

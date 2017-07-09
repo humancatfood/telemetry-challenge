@@ -4,6 +4,8 @@ const ACTIONS = {
 
   CONNECTION_ESTABLISHED: 'CONNECTION_ESTABLISHED',
   CONNECTION_LOST: 'CONNECTION_LOST',
+
+  RECEIVE_DATA: 'RECEIVE_DATA'
 };
 
 
@@ -24,6 +26,12 @@ export const connectionEstablished = () => ({
 
 export const connectionLost = () => ({
   type: ACTIONS.CONNECTION_LOST
+});
+
+
+export const receiveData = data => ({
+  type: ACTIONS.RECEIVE_DATA,
+  payload: data
 });
 
 

@@ -1,6 +1,6 @@
 import Connection from './connection-service';
 
-import { connectionEstablished, connectionLost } from './actions';
+import { connectionEstablished, connectionLost, receiveData } from './actions';
 
 
 
@@ -23,7 +23,7 @@ export default class StoreConnector
 
   onStoreUpdate (state)
   {
-    if (!this.connection && state.shouldBeConnected)
+    if (!this.connection && state.connection.shouldBeConnected)
     {
       this.connection = new Connection({
         onOpen: this.onOpen.bind(this),
@@ -32,7 +32,7 @@ export default class StoreConnector
         onError: this.onError.bind(this)
       });
     }
-    else if (this.connection && !state.shouldBeConnected)
+    else if (this.connection && !state.connection.shouldBeConnected)
     {
       this.connection.close();
       this.connection = null;
@@ -49,14 +49,22 @@ export default class StoreConnector
     this.store.dispatch(connectionLost());
   }
 
-  onMessage ()
+  onMessage (msg)
   {
-    window.console.log('onMessage:', arguments);
+    try
+    {
+      const data = JSON.parse(msg.data);
+      this.store.dispatch(receiveData(data));
+    }
+    catch (e)
+    {
+      window.console.error('onMessage-error:', e, msg);
+    }
   }
 
-  onError ()
+  onError (...args)
   {
-    window.console.error('onError:', arguments);
+    window.console.error('onError:', args);
   }
 
 }

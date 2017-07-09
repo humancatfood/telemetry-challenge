@@ -91,6 +91,18 @@ const common = {
             }
           ]
         })
+      },
+      {
+        test: /\.(png|jpg|jpeg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]?[hash]'
+            }
+          },
+          'image-webpack-loader'
+        ]
       }
     ]
   }

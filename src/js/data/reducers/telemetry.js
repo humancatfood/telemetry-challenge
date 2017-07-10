@@ -39,7 +39,6 @@ export default (state=defaultTelemetryState, action) => {
         maxSpeed: Math.max(airspeed, state.maxSpeed),
         averageSpeed: speedRecords.reduce((a,b) => a + b) / speedRecords.length,
 
-
         altitude: altitude,
         minAltitude: Math.min(altitude, state.minAltitude),
         maxAltitude: Math.max(altitude, state.maxAltitude),

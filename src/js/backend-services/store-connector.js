@@ -1,5 +1,6 @@
 import Connection from './connection-service';
 
+
 import { connectionEstablished, connectionLost, receiveData } from '../data/actions';
 
 
@@ -59,7 +60,7 @@ export default class StoreConnector
   {
     this.store.dispatch(connectionLost());
 
-    const { connection: shouldBeConnected} = this.store.getState();
+    const { connection: { shouldBeConnected }} = this.store.getState();
     if (shouldBeConnected && this.autoReconnect)
     {
       setTimeout(this.connectToServer.bind(this), 1000);

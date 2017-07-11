@@ -1,6 +1,6 @@
 import Connection from './connection-service';
 
-
+import { sanitizeData } from './data-sanitization';
 import { connectionEstablished, connectionLost, receiveData } from '../data/actions';
 
 
@@ -69,15 +69,9 @@ export default class StoreConnector
 
   onMessage (msg)
   {
-    try
-    {
-      const data = JSON.parse(msg.data);
-      this.store.dispatch(receiveData(data));
-    }
-    catch (e)
-    {
-      window.console.error('onMessage-error:', e, msg);
-    }
+    sanitizeData(msg.data)
+      .then(data => this.store.dispatch(receiveData(data)))
+      .catch(error => window.console.error(error));
   }
 
   onError (...args)

@@ -1,6 +1,7 @@
 import Connection from './connection';
 
 import { sanitizeData } from './data-sanitization';
+import MetaBuffer from './buffer';
 
 
 
@@ -18,6 +19,9 @@ class ConnectionInterface
     this.shouldBeConnected = false;
     this.autoReconnect = autoReconnect;
     this.callbacks = {};
+
+    this.speedMetaBuffer = new MetaBuffer();
+    this.altitudeMetaBuffer = new MetaBuffer();
   }
 
   setCallbacks ({onConnecting, onConnected, onDisconnected, onMessage, onError})
@@ -71,6 +75,7 @@ class ConnectionInterface
   _onMessage (msg)
   {
     sanitizeData(msg.data)
+      .then(data => this._calculateMetaData(data))
       .then(data => this.callbacks.onMessage && this.callbacks.onMessage(data))
       .catch(error => this._onError(error));
   }
@@ -78,6 +83,33 @@ class ConnectionInterface
   _onError (error)
   {
     this.callbacks.onError && this.callbacks.onError(error);
+  }
+
+  _calculateMetaData (data)
+  {
+    return new Promise(resolve => {
+
+      const {telemetry: {airspeed, altitude}, control} = data;
+
+      this.speedMetaBuffer.update(altitude);
+      this.altitudeMetaBuffer.update(airspeed);
+
+      resolve({
+        telemetry: {
+          airspeed,
+          altitude,
+
+          minSpeed: this.speedMetaBuffer.min,
+          maxSpeed: this.speedMetaBuffer.max,
+          averageSpeed: this.speedMetaBuffer.average,
+
+          minAltitude: this.altitudeMetaBuffer.min,
+          maxAltitude: this.altitudeMetaBuffer.max,
+          averageAltitude: this.altitudeMetaBuffer.average
+        },
+        control
+      });
+    });
   }
 
 }

@@ -13,7 +13,7 @@ const pkg = require('./package.json');
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
-  build: path.resolve(__dirname, 'build')
+  build: path.resolve(__dirname, 'dist')
 };
 
 

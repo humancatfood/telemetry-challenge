@@ -26,6 +26,7 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
+    "gh-pages-deploy": "^0.4.2",
     "html-webpack-plugin": "^2.29.0",
     "image-webpack-loader": "^3.3.1",
     "node-sass": "^4.5.3",
@@ -36,8 +37,15 @@
     "webpack-dev-server": "^2.5.1",
     "webpack-merge": "^4.1.0"
   },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "build"
+    ]
+  },
   "scripts": {
     "start": "webpack-dev-server --progress --colors",
-    "build": "webpack -p --progress --colors"
+    "build": "webpack -p --progress --colors",
+    "deploy": "gh-pages-deploy"
   }
 }

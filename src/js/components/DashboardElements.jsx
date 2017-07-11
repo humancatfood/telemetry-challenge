@@ -23,11 +23,6 @@ export const LandingGearDisplay = ({ on, onToggle }) => (
 );
 
 
-export const FlapStatusDisplay = ({ position }) => (
-  <div id="flaps-status" className={ `position-${ position }` } />
-);
-
-
 export const ConnectionStatusDisplay = ({ isConnected, isConnecting }) => (
   isConnected ?
     <div id="connection-status" className="connected">Connected</div> :

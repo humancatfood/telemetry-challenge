@@ -55,8 +55,17 @@ class ConnectionInterface
   toggleLandingGear (on)
   {
     this.connection && this.connection.send({
-      controls: {
+      control: {
         landing_gear: on
+      }
+    });
+  }
+
+  setFlapsPosition (position)
+  {
+    this.connection && this.connection.send({
+      control: {
+        flaps: position
       }
     });
   }

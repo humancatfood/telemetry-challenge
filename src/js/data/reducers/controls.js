@@ -32,6 +32,15 @@ export default (state=defaultConnectionState, action) => {
       };
     }
 
+    case ACTIONS.SET_FLAPS_POSITION: {
+      const { position } = action.payload;
+
+      return {
+        ...state,
+        flaps: position
+      };
+    }
+
     default:
       return state;
 

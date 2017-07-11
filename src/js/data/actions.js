@@ -10,7 +10,8 @@ const ACTIONS = {
 
   RECEIVE_DATA: 'RECEIVE_DATA',
 
-  TOGGLE_LANDING_GEAR: 'TOGGLE_LANDING_GEAR'
+  TOGGLE_LANDING_GEAR: 'TOGGLE_LANDING_GEAR',
+  SET_FLAPS_POSITION: 'SET_FLAPS_POSITION'
 };
 
 
@@ -44,6 +45,19 @@ export const toggleLandingGear = on => dispatch => {
     }
   });
   connectionInterface.toggleLandingGear(on);
+
+};
+
+
+export const setFlapsPosition = position => dispatch => {
+
+  dispatch({
+    type: ACTIONS.SET_FLAPS_POSITION,
+    payload: {
+      position
+    }
+  });
+  connectionInterface.setFlapsPosition(position);
 
 };
 

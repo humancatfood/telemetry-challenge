@@ -2,7 +2,7 @@ export default class Connection
 {
   get url ()
   {
-    return 'wss://interview.dev.ctx.ef.com/telemetry';
+    return 'ws://interview.dev.ctx.ef.com/telemetry';
   }
 
   constructor ({onOpen, onClose, onMessage, onError})

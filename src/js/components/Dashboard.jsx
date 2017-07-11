@@ -10,23 +10,9 @@ import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
 
 
 @connect(state => ({
-
-  landingGear: state.controls.landingGear,
-  flaps: state.controls.flaps,
-
-  speed: state.telemetry.speed,
-  minSpeed: state.telemetry.minSpeed,
-  maxSpeed: state.telemetry.maxSpeed,
-  averageSpeed: state.telemetry.averageSpeed,
-
-  altitude: state.telemetry.altitude,
-  minAltitude: state.telemetry.minAltitude,
-  maxAltitude: state.telemetry.maxAltitude,
-  averageAltitude: state.telemetry.averageAltitude,
-
-  isConnected: state.connection.isConnected,
-  isConnecting: state.connection.isConnecting
-
+  controls: state.controls,
+  telemetry: state.telemetry,
+  connection: state.connection
 }))
 export default class Dashboard extends React.Component
 {
@@ -42,18 +28,21 @@ export default class Dashboard extends React.Component
 
   render ()
   {
-    const { speed, minSpeed, maxSpeed, averageSpeed,
-            altitude, minAltitude, maxAltitude, averageAltitude,
-            landingGear, flaps,
-            isConnected, isConnecting } = this.props;
+    const { airspeed, minSpeed, maxSpeed, averageSpeed,
+            altitude, minAltitude, maxAltitude, averageAltitude } = this.props.telemetry;
+
+    const { landingGear, flaps } = this.props.controls;
+
+    const { isConnected, isConnecting } = this.props.connection;
+
 
     return (
       <div id="dashboard">
 
-        <NeedleGaugeSimple id="speedometer" value={ speed } max="500"/>
+        <NeedleGaugeSimple id="speedometer" value={ airspeed } max="500"/>
         <NeedleGaugeClock id="altimeter" value={ altitude / 1000 } max="10" />
 
-        <NumericGaugeDigital id="numeric-speed" value={ speed } />
+        <NumericGaugeDigital id="numeric-speed" value={ airspeed } />
 
         <NumericDisplay id="numeric-speed-min" value={ minSpeed } />
         <NumericDisplay id="numeric-speed-max" value={ maxSpeed } />

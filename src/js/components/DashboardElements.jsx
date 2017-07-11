@@ -1,6 +1,8 @@
 import React from 'react';
 import numeral from 'numeral';
 
+import smallNeedle from './../../img/needle-small.png';
+import bigNeedle from './../../img/needle-big.png';
 
 
 export const NumericDisplay = ({id, value}) => (
@@ -34,7 +36,7 @@ export const ConnectionStatusDisplay = ({ isConnected, isConnecting, onToggle })
 
 export const NeedleGaugeSimple = ({ id, value, max }) => (
   <div id={ id } className="gauge-needle" style={{ transform: `rotate(${ (value / max) * 360 }deg)` }}>
-    <img src="../../img/needle-big.png" />
+    <img src={ bigNeedle } />
   </div>
 );
 
@@ -42,10 +44,10 @@ export const NeedleGaugeSimple = ({ id, value, max }) => (
 export const NeedleGaugeClock = ({ id, value, max }) => (
   <div id={ id }>
     <div className="gauge-needle" style={{ transform: `rotate(${ (value / max) * 360 }deg)` }}>
-      <img src="../../img/needle-big.png"/>
+      <img src={ bigNeedle } />
     </div>
     <div className="gauge-needle" style={{ transform: `rotate(${ (value / (max * 10)) * 360 }deg)` }}>
-      <img src="../../img/needle-small.png"/>
+      <img src={ smallNeedle } />
     </div>
   </div>
 );

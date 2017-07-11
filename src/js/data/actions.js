@@ -48,7 +48,6 @@ export const toggleLandingGear = on => dispatch => {
 
 };
 
-
 export const setFlapsPosition = position => dispatch => {
 
   dispatch({
@@ -60,6 +59,11 @@ export const setFlapsPosition = position => dispatch => {
   connectionInterface.setFlapsPosition(position);
 
 };
+
+export const connectToServer = () => dispatch => connectionInterface.connectToServer();
+
+
+export const disconnectFromServer = () => dispatch => connectionInterface.disconnectFromServer();
 
 
 export default ACTIONS;

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import connectionInterface from './../backend-services/connection-interface';
-import { toggleLandingGear, setFlapsPosition } from './../data/actions';
+import { toggleLandingGear, setFlapsPosition, connectToServer, disconnectFromServer } from './../data/actions';
 
 import { ConnectionStatusDisplay, LandingGearDisplay,
          NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog,
@@ -17,18 +16,20 @@ import { FlapStatusDisplay } from './FlapsStatusDisplay';
   connection: state.connection
 }), {
   toggleLandingGear,
-  setFlapsPosition
+  setFlapsPosition,
+  connectToServer,
+  disconnectFromServer
 })
 export default class Dashboard extends React.Component
 {
   componentDidMount()
   {
-    connectionInterface.connectToServer();
+    this.props.connectToServer();
   }
 
   componentWillUnmount()
   {
-    connectionInterface.disconnectFromServer();
+    this.props.disconnectFromServer();
   }
 
   render ()

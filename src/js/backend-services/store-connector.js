@@ -12,13 +12,19 @@ export default class StoreConnector
   {
     this.store = null;
     this.connection = null;
+    this.unsubscribeFn = null;
     this.autoReconnect = autoReconnect;
   }
 
   connectToStore (store)
   {
+    if (this.unsubscribeFn)
+    {
+      this.unsubscribeFn();
+    }
+
     this.store = store;
-    store.subscribe(() => {
+    this.unsubscribeFn = store.subscribe(() => {
       this.onStoreUpdate(store.getState());
     });
   }

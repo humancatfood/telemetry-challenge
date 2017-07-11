@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { connectDashboard, disconnectDashboard } from './../data/actions';
+import connectionInterface from './../backend-services/connection-interface';
 
 import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
          NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog,
@@ -27,21 +27,17 @@ import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
   isConnected: state.connection.isConnected,
   isConnecting: state.connection.isConnecting
 
-}), {
-  connectDashboard,
-  disconnectDashboard
-
-})
+}))
 export default class Dashboard extends React.Component
 {
   componentDidMount()
   {
-    this.props.connectDashboard();
+    connectionInterface.connectToServer();
   }
 
   componentWillUnmount()
   {
-    this.props.disconnectDashboard();
+    connectionInterface.disconnectFromServer();
   }
 
   render ()

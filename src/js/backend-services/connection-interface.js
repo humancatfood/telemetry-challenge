@@ -52,6 +52,15 @@ class ConnectionInterface
     this.connection = null;
   }
 
+  toggleLandingGear (on)
+  {
+    this.connection && this.connection.send({
+      controls: {
+        landing_gear: on
+      }
+    });
+  }
+
   _onConnecting ()
   {
     this.callbacks.onConnecting && this.callbacks.onConnecting();

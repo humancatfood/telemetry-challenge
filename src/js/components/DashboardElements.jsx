@@ -18,8 +18,8 @@ export const NumericGaugeAnalog = ({id, value}) => (
 );
 
 
-export const LandingGearDisplay = ({ on }) => (
-  <div id="landing-gear-status" className={ on ? 'on' : 'off' } />
+export const LandingGearDisplay = ({ on, onToggle }) => (
+  <div id="landing-gear-status" className={ on ? 'on' : 'off' } onClick={ () => onToggle(!on) } />
 );
 
 

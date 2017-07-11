@@ -23,6 +23,15 @@ export default (state=defaultConnectionState, action) => {
       };
     }
 
+    case ACTIONS.TOGGLE_LANDING_GEAR: {
+      const { on } = action.payload;
+
+      return {
+        ...state,
+        landingGear: on
+      };
+    }
+
     default:
       return state;
 

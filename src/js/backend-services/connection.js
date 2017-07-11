@@ -17,7 +17,7 @@ export default class Connection
 
   send (data)
   {
-    this.connection.send(data);
+    this.connection.send(JSON.stringify(data));
   }
 
   close ()

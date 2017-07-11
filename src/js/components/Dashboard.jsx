@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import connectionInterface from './../backend-services/connection-interface';
+import { toggleLandingGear } from './../data/actions';
 
 import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
          NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog,
@@ -13,7 +14,9 @@ import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
   controls: state.controls,
   telemetry: state.telemetry,
   connection: state.connection
-}))
+}), {
+  toggleLandingGear
+})
 export default class Dashboard extends React.Component
 {
   componentDidMount()
@@ -28,12 +31,14 @@ export default class Dashboard extends React.Component
 
   render ()
   {
+    const { telemetry, controls, connection, toggleLandingGear } = this.props;
+
     const { airspeed, minSpeed, maxSpeed, averageSpeed,
-            altitude, minAltitude, maxAltitude, averageAltitude } = this.props.telemetry;
+            altitude, minAltitude, maxAltitude, averageAltitude } = telemetry;
 
-    const { landingGear, flaps } = this.props.controls;
+    const { landingGear, flaps } = controls;
 
-    const { isConnected, isConnecting } = this.props.connection;
+    const { isConnected, isConnecting } = connection;
 
 
     return (
@@ -54,7 +59,7 @@ export default class Dashboard extends React.Component
         <NumericDisplay id="numeric-altitude-max" value={ maxAltitude } />
         <NumericDisplay id="numeric-altitude-ave" value={ averageAltitude } />
 
-        <LandingGearDisplay on={ landingGear } />
+        <LandingGearDisplay on={ landingGear } onToggle={ on => toggleLandingGear(on) }/>
         <FlapStatusDisplay position={ flaps } />
         <ConnectionStatusDisplay isConnected={ isConnected } isConnecting={ isConnecting } />
 

@@ -23,12 +23,12 @@ export const LandingGearDisplay = ({ on, onToggle }) => (
 );
 
 
-export const ConnectionStatusDisplay = ({ isConnected, isConnecting }) => (
+export const ConnectionStatusDisplay = ({ isConnected, isConnecting, onToggle }) => (
   isConnected ?
-    <div id="connection-status" className="connected">Connected</div> :
+    <div id="connection-status" className="connected" onClick={ () => onToggle(false) } >Connected</div> :
     isConnecting ?
-      <div id="connection-status" className="connecting">Connecting</div> :
-      <div id="connection-status" className="disconnected">Disconnected</div>
+      <div id="connection-status" className="connecting" onClick={ () => onToggle(false) } >Connecting</div> :
+      <div id="connection-status" className="disconnected" onClick={ () => onToggle(true) } >Disconnected</div>
 );
 
 

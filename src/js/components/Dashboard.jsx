@@ -34,7 +34,9 @@ export default class Dashboard extends React.Component
 
   render ()
   {
-    const { telemetry, controls, connection, toggleLandingGear, setFlapsPosition } = this.props;
+    const { telemetry, controls, connection,
+            connectToServer, disconnectFromServer,
+            toggleLandingGear, setFlapsPosition } = this.props;
 
     const { airspeed, minSpeed, maxSpeed, averageSpeed,
             altitude, minAltitude, maxAltitude, averageAltitude } = telemetry;
@@ -65,11 +67,13 @@ export default class Dashboard extends React.Component
         <LandingGearDisplay on={ landingGear } onToggle={ on => toggleLandingGear(on) }/>
         <FlapStatusDisplay position={ flaps } onSetPosition={ pos => setFlapsPosition(pos) } />
 
-        <ConnectionStatusDisplay isConnected={ isConnected } isConnecting={ isConnecting } />
+        <ConnectionStatusDisplay isConnected={ isConnected } isConnecting={ isConnecting }
+                                 onToggle={ on => on ? connectToServer() : disconnectFromServer() } />
 
       </div>
     );
   }
+
 }
 
 

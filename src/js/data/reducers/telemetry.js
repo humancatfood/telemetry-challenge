@@ -27,6 +27,13 @@ export default (state=defaultTelemetryState, action) => {
         ...action.payload.telemetry
       };
 
+    case ACTIONS.DISCONNECTED:
+      return {
+        ...state,
+        airspeed: 0,
+        altitude: 0
+      };
+
     default:
       return state;
 

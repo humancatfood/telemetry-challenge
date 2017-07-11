@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { connectDashboard, disconnectDashboard } from './../data/actions';
 
 import { ConnectionStatusDisplay, FlapStatusDisplay, LandingGearDisplay,
-         NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog } from './DashboardElements';
+         NumericDisplay, NumericGaugeDigital, NumericGaugeAnalog,
+         NeedleGaugeSimple, NeedleGaugeClock } from './DashboardElements';
+
 
 
 @connect(state => ({
@@ -52,6 +54,9 @@ export default class Dashboard extends React.Component
     return (
       <div id="dashboard">
 
+        <NeedleGaugeSimple id="speedometer" value={ speed } max="500"/>
+        <NeedleGaugeClock id="altimeter" value={ altitude / 1000 } max="10" />
+
         <NumericGaugeDigital id="numeric-speed" value={ speed } />
 
         <NumericDisplay id="numeric-speed-min" value={ minSpeed } />
@@ -59,6 +64,7 @@ export default class Dashboard extends React.Component
         <NumericDisplay id="numeric-speed-ave" value={ averageSpeed } />
 
         <NumericGaugeAnalog id="numeric-altitude" value={ altitude / 1000 } />
+
         <NumericDisplay id="numeric-altitude-min" value={ minAltitude } />
         <NumericDisplay id="numeric-altitude-max" value={ maxAltitude } />
         <NumericDisplay id="numeric-altitude-ave" value={ averageAltitude } />

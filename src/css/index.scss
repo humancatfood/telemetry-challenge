@@ -84,6 +84,34 @@ html, body {
 }
 
 
+#speedometer {
+  top: 220px;
+  left: 218px;
+}
+
+
+#altimeter {
+  top: 220px;
+  left: 552px;
+}
+
+.gauge-needle {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease-in-out;
+
+  img {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 #connection-status {
   font-size: 16px;
   top: 435px;

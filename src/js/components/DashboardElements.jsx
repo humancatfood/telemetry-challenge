@@ -35,3 +35,22 @@ export const ConnectionStatusDisplay = ({ isConnected, isConnecting }) => (
       <div id="connection-status" className="connecting">Connecting</div> :
       <div id="connection-status" className="disconnected">Disconnected</div>
 );
+
+
+export const NeedleGaugeSimple = ({ id, value, max }) => (
+  <div id={ id } className="gauge-needle" style={{ transform: `rotate(${ (value / max) * 360 }deg)` }}>
+    <img src="../../img/needle-big.png" />
+  </div>
+);
+
+
+export const NeedleGaugeClock = ({ id, value, max }) => (
+  <div id={ id }>
+    <div className="gauge-needle" style={{ transform: `rotate(${ (value / max) * 360 }deg)` }}>
+      <img src="../../img/needle-big.png"/>
+    </div>
+    <div className="gauge-needle" style={{ transform: `rotate(${ (value / (max * 10)) * 360 }deg)` }}>
+      <img src="../../img/needle-small.png"/>
+    </div>
+  </div>
+);

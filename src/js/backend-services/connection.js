@@ -1,13 +1,9 @@
 export default class Connection
 {
-  get url ()
-  {
-    return 'ws://interview.dev.ctx.ef.com/telemetry';
-  }
 
-  constructor ({onOpen, onClose, onMessage, onError})
+  constructor (url, {onOpen, onClose, onMessage, onError})
   {
-    this.connection = new WebSocket(this.url);
+    this.connection = new WebSocket(url);
 
     this.connection.onopen = onOpen;
     this.connection.onclose = onClose;

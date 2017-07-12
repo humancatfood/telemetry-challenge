@@ -46,7 +46,7 @@ class ConnectionInterface
   {
     this.shouldBeConnected = true;
     this._onConnecting();
-    this.connection = new Connection({
+    this.connection = new Connection(this.url, {
       onOpen: this._onConnected.bind(this),
       onClose: this._onDisconnected.bind(this),
       onMessage: this._onMessage.bind(this),

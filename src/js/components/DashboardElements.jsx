@@ -5,6 +5,7 @@ import smallNeedle from './../../img/needle-small.png';
 import bigNeedle from './../../img/needle-big.png';
 
 
+
 export const NumericDisplay = ({id, value}) => (
   <div id={ id } className="numeric-display">{ numeral(value).format('0,0.0') }</div>
 );
@@ -35,7 +36,7 @@ export const ConnectionStatusDisplay = ({ isConnected, isConnecting, onToggle })
 
 
 export const NeedleGaugeSimple = ({ id, value, max }) => (
-  <div id={ id } className="gauge-needle" style={{ transform: `rotate(${ (value / max) * 360 }deg)` }}>
+  <div id={ id } className="gauge-needle" style={ getPrefixedRotationStyle((value / max) * 360 ) }>
     <img src={ bigNeedle } />
   </div>
 );
@@ -43,11 +44,22 @@ export const NeedleGaugeSimple = ({ id, value, max }) => (
 
 export const NeedleGaugeClock = ({ id, value, max }) => (
   <div id={ id }>
-    <div className="gauge-needle" style={{ transform: `rotate(${ (value / max) * 360 }deg)` }}>
+    <div className="gauge-needle" style={ getPrefixedRotationStyle((value / max) * 360 ) }>
       <img src={ bigNeedle } />
     </div>
-    <div className="gauge-needle" style={{ transform: `rotate(${ (value / (max * 10)) * 360 }deg)` }}>
+    <div className="gauge-needle" style={ getPrefixedRotationStyle((value / (max * 10)) * 360 ) }>
       <img src={ smallNeedle } />
     </div>
   </div>
 );
+
+
+function getPrefixedRotationStyle (degrees)
+{
+  const rotate = `rotate(${ degrees / 100 }deg)`;
+  return {
+    transform: rotate,
+    '-webkit-transform': rotate,
+    '-moz-transform': rotate
+  };
+}

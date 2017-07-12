@@ -10,10 +10,19 @@ html, body {
   padding: 0;
 }
 
+html {
+  display: table;
+}
+
+body {
+  display: table-cell;
+  vertical-align: middle;
+}
 
 #dashboard {
 
   position: relative;
+  margin: 0 auto;
   width: 1000px;
   height: 600px;
 

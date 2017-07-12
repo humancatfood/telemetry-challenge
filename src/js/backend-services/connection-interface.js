@@ -1,3 +1,7 @@
+/**
+ * This interface is a singleton! It can be imported anywhere in the app.
+ */
+
 import Connection from './connection';
 
 import { sanitizeData } from './data-sanitization';
@@ -13,6 +17,11 @@ class ConnectionInterface
     return 'ws://interview.dev.ctx.ef.com/telemetry';
   }
 
+
+  /**
+   * @param autoReconnect if this is set to true, the interface re-connects to the server if the connection
+   * is lost.
+   */
   constructor (autoReconnect=true)
   {
     this.connection = null;

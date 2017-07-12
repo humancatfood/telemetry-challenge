@@ -17,6 +17,7 @@ export default class App extends React.Component
 
     const store = this.store = configureStore();
 
+    // these are redux-actions that I'm dispatching as callbacks for the connection interface
     connectionInterface.setCallbacks({
       onConnecting: () => store.dispatch(connecting()),
       onConnected: () => store.dispatch(connected()),

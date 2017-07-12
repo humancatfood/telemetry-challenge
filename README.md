@@ -16,7 +16,7 @@ Uses React/Redux, simply because I'm most familiar with it. If I had to do it ag
 
 > (npm|yarn) start
 ```
-
+Then open `http://localhost:3000/` in the browser.
 
 ### How to build:
 

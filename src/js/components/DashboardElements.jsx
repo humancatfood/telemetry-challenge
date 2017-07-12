@@ -56,7 +56,7 @@ export const NeedleGaugeClock = ({ id, value, max }) => (
 
 function getPrefixedRotationStyle (degrees)
 {
-  const rotate = `rotate(${ degrees / 100 }deg)`;
+  const rotate = `rotate(${ degrees }deg)`;
   return {
     transform: rotate,
     '-webkit-transform': rotate,

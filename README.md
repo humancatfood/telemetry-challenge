@@ -61,7 +61,7 @@ Then open `http://localhost:3000/` in the browser.
   I've added the option to disconnect by clicking on the Server Connection State. 
   
 
-### What I would would like to improve:
+### What I would like to improve:
   
 
 - Write tests:

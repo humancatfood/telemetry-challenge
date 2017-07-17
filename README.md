@@ -34,7 +34,7 @@ Then open `http://localhost:3000/` in the browser.
   
 - Control messages:
 
-  For now, when toggling the landing gear or flaps ( you can drag them! :) ), it sets their state on the dashboard and makes a post to the backend about it. There's no round-trip to check if the control message was accepted. If the backend disagrees, it just sends the correct state with the next update.
+  For now, when toggling the landing gear or flaps ( you can drag them! 😎 ), it sets their state on the dashboard and makes a post to the backend about it. There's no round-trip to check if the control message was accepted. If the backend disagrees, it just sends the correct state with the next update.
   
 - Average airspeed and altitude:
 
@@ -74,4 +74,4 @@ Then open `http://localhost:3000/` in the browser.
   
   Especially the exact pixel-positions of the screen elements should live somewhere central in case they change in the future.
   
-  Also the font and font-sizes aren't great but this need quite a bit of fiddling.
+  Also the fonts and font-sizes aren't great but this needs quite a bit of fiddling.
